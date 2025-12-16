@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Resume Analyzer</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 520px;
+            margin: auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 6px;
+            color: #444;
+        }
+
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .score {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+
+        .missing-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #b71c1c;
+        }
+
+        ul {
+            padding-left: 18px;
+        }
+
+        li {
+            margin-bottom: 6px;
+            color: #d32f2f;
+            font-size: 14px;
+        }
+
+        .success {
+            color: #2e7d32;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>AI Resume Analyzer</h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            <label>Upload Resume (PDF)</label>
+            <input type="file" name="resume" accept=".pdf" required>
+
+            <label>Paste Job Description</label>
+            <textarea name="jd" rows="6" placeholder="Enter job description here..." required></textarea>
+
+            <button type="submit">Analyze Resume</button>
+        </form>
+
+        {% if score %}
+        <div class="result">
+            <div class="score">Match Score: {{ score }}%</div>
+
+            {% if missing_skills %}
+            <div class="missing-title">Missing Skills</div>
+            <ul>
+                {% for skill in missing_skills %}
+                <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="success">🎉 No major skill gaps found</div>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <footer>
+            AI Resume Analyzer • NLP & Machine Learning
+        </footer>
+    </div>
+
+</body>
+
+</html>
