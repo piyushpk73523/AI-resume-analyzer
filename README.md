@@ -23,16 +23,5 @@ An AI-based web application built using Python and Flask that analyzes a resume 
 
 ---
 
-## ✨ Features
 
-- Upload resume in PDF format
-- Paste job description
-- Resume–Job match score calculation
-- Skill gap detection (missing skills)
-- Clean and simple user interface
-- NLP-based text comparison
-
----
-
-## 📁 Project Structure
 
